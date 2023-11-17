@@ -13,7 +13,7 @@ export const AllData = () => {
       {/* <Navbar /> */}
       <div className="mt-8 flex min-h-[70vh] flex-col items-center justify-center font-sans font-semibold text-slate-100 pb-24">
         <div className="mb-4">
-          <h1>All Causes</h1>
+          <h1>Dashboard</h1>
         </div>
         <div className="relative mt-8 w-[80vw]   bg-[rgb(55,56,56)] shadow-md sm:rounded-lg">
           <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
@@ -54,7 +54,7 @@ export const AllData = () => {
                         {show.Vehicle_Type}
                       </td>
                       <td className="px-6 py-4 "> {show.Eccentricity}</td>
-                      <td className="px-6 py-4">Gou</td>
+                      <td className="px-6 py-4">Bad</td>
                       {/* <td className="px-6 py-4">Bou</td> */}
 
                       {/* <td className="px-6 py-4">No</td> */}
