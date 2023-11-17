@@ -3,10 +3,13 @@ import React, { useContext } from "react";
 import { useState } from "react";
 
 import { Link, NavLink } from "react-router-dom";
-// import Web3Context from ".././contexts";
+import Web3Context from ".././contexts";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const Navbar = () => {
-  //   const { connectWallet, account } = useContext(Web3Context);
+  const { connectWallet, account, checkIfWalletIsConnected } =
+    useContext(Web3Context);
 
   const arr = ["Studio"];
   const items = new Map([["Studio", "/"]]);
@@ -16,6 +19,7 @@ const Navbar = () => {
   const handleItemClick = (val) => {
     setSelectedItem(val);
   };
+
 
   return (
     <>
@@ -41,11 +45,29 @@ const Navbar = () => {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="mb-2  mt-4 bg-[#FFA500] px-6  py-3 text-center  text-sm font-medium uppercase text-white hover:opacity-80"
-            // onClick={connectWallet}
+            className="mb-2  mt-4 bg-[#FFA500] px-6  py-3 text-center  text-sm font-medium  text-white hover:opacity-80"
+            onClick={connectWallet}
           >
-            Connect Wallet
+            {account.currentAccount
+              ? `Hey ${String(account.currentAccount).slice(0, 5)}...${String(
+                  account.currentAccount
+                ).slice(String(account.currentAccount).length - 5)} `
+              : "Connect Wallet"}
           </button>
+          <Toaster
+            position="top-center"
+            reverseOrder={true}
+            gutter={4}
+            toastOptions={{
+              // Define default options
+              className: "",
+              duration: 3000,
+              style: {
+                background: "rgb(126 34 206)",
+                color: "#fff",
+              },
+            }}
+          />
         </div>
       </div>
     </>

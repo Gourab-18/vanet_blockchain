@@ -1,15 +1,17 @@
 /* eslint-disable */
 import React, { useState } from "react";
-import FakeNewsApp from "../contracts/Vehicles.json";
+import Vehicles from "../contracts/Vehicles.json";
 import { Web3Context } from "./index";
 import Web3 from "web3";
 
 const Web3Provider = ({ children }) => {
+  //const [chainId,setChain]=useState("")
   const [account, setAccount] = useState({
     accounts: null,
     currentAccount: null,
   });
   const [contract, setContract] = useState("");
+
 
   const connectWallet = async () => {
     try {
@@ -41,26 +43,32 @@ const Web3Provider = ({ children }) => {
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     const chain = await web3.eth.getChainId();
-
+    //setChain(chain)
+    // console.log('chain ID:', chain);
     setAccount({
       accounts: accounts,
       currentAccount: accounts[0],
     });
 
     if (accounts.length !== 0) {
+      //const account = accounts[0];
+      // console.log('Found an authorized account:', account);
+
+      //console.log(chain)
       getContract(chain);
     } else {
       console.log("No authorized account found");
     }
   };
   const getContract = (chain) => {
+    console.log("Chain is", chain);
     var web3 = new Web3(window.ethereum);
 
     //const networkId = await web3.eth.net.getId();
-    const deployedNetwork = FakeNewsApp.networks[chain];
+    const deployedNetwork = Vehicles.networks[chain];
 
     const instance = new web3.eth.Contract(
-      FakeNewsApp.abi,
+      Vehicles.abi,
       deployedNetwork && deployedNetwork.address
     );
 

@@ -8,7 +8,7 @@ contract Vehicles {
         //    once voting has started, the list of participants who have voted
         uint256 trust;
         
-        string report;
+       uint256  sector;
     }
     mapping(string => Vehicle) public vehicleData;
 
@@ -18,13 +18,13 @@ contract Vehicles {
         string memory vehicle_id,
         string memory vehicle_type,
         uint256 trust,
-        string memory report
+        uint256 sector
     ) public {
         Vehicle memory obj;
         obj.vehicle_id = vehicle_id;
         obj.vehicle_type = vehicle_type;
         obj.trust = trust;
-        obj.report = report;
+        obj.sector =sector;
 
         vehicleData[vehicle_id] = obj;
         v_id.push(vehicle_id);
